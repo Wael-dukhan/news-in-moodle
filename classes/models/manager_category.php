@@ -41,6 +41,7 @@ class manager_category {
         
         try {
             $DB->insert_record('local_newsing_category', $record);
+            // echo "yes";
             redirect("index.php");  
             return true;
         } catch (dml_exception $e) {

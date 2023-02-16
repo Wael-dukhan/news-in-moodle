@@ -43,7 +43,7 @@ class local_news_category_form extends moodleform {
             $categories[$record->id]=$record->name;
         }
         $mform->addElement('select', 'parent','categories',$categories); // Add elements to your form.
-        // $mform->setDefault('parent',0);
+        $mform->setDefault('parent',0);
         //        ----------------------------------
         $mform->addElement('text', 'namecategory', get_string('yourmessage', 'local_newsing')); // Add elements to your form.
         $mform->setType('namecategory', PARAM_TEXT); // Set type of element.

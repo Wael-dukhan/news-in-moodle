@@ -81,7 +81,7 @@ if ($allowpost) {
         $img = html_writer::empty_tag('img', array('src' => (bool)$m->image ? $m->image : '', 'class' => 'img-thumbnail', 'alt' => "Alt text for your image ",'style'=>'height:175px'));
         echo html_writer::tag('p', $img);
         echo html_writer::tag('p', format_text($m->title, FORMAT_PLAIN), array('class' => 'card-text'));
-        echo html_writer::tag('p', format_text($m->category_name, FORMAT_PLAIN), array('class' => 'card-text'));
+        echo html_writer::tag('p', format_text($m->name , FORMAT_PLAIN), array('class' => 'card-text'));
         echo html_writer::start_tag('p', array('class' => 'card-text'));
         echo html_writer::tag('small', format_text($m->content, FORMAT_PLAIN), array('class' => 'text-muted'));
         echo html_writer::end_tag('p');
@@ -92,7 +92,7 @@ if ($allowpost) {
         echo html_writer::tag('small', format_text($m->categoryid, FORMAT_PLAIN), array('class' => 'text-muted '));
         echo html_writer::end_tag('p');
         echo html_writer::start_tag('p', array('class' => 'card-text'));
-        echo html_writer::tag('small', format_text($m->id, FORMAT_PLAIN), array('class' => 'text-muted '));
+        echo html_writer::tag('small', format_text($m->ca, FORMAT_PLAIN), array('class' => 'text-muted '));
         echo html_writer::end_tag('p');
         if ($deleteanypost || $deletepost) {
             echo html_writer::start_tag('p', array('class' => 'card-footer text-center'));

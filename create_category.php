@@ -40,10 +40,11 @@ $categoryform = new local_news_category_form();
 if ($data = $categoryform->get_data()) {
 
     $category_name = required_param('namecategory', PARAM_TEXT);
-    // die("hhhhh");
+    
     $parent_category = required_param('parent', PARAM_TEXT);
-    if (!empty($category_name) && !empty($parent_category)) {
+    if (!empty($category_name)) {
         $manager = new manager_category();
+        // die("hhhhh");
         $manager->create_category($category_name,$parent_category);
     }
 }
@@ -51,5 +52,7 @@ if ($data = $categoryform->get_data()) {
 echo $OUTPUT->header();
 
 $categoryform->display();
+var_dump($category_name,!empty($parent_category)); 
+echo "<hr>";
 var_dump($data);
 echo $OUTPUT->footer();
