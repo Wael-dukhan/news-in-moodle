@@ -40,8 +40,8 @@ if (isguestuser()) {
     throw new moodle_exception('no guest');
 }
 
-$allowpost = has_capability('local/newsing:viewnews', $context);
-$deletepost = has_capability('local/newsing:deleteownnews', $context);
+$allowpost     = has_capability('local/newsing:viewnews', $context);
+$deletepost    = has_capability('local/newsing:deleteownnews', $context);
 $deleteanypost = has_capability('local/newsing:deleteanynews', $context);
 $updateownpost = has_capability('local/newsing:poatownnews', $context);
 $updateanypost = has_capability('local/newsing:postanynews', $context);
@@ -115,7 +115,7 @@ if ($allowpost) {
                     '/local/newsing/edit_news.php',
                     array('action' => 'edit', 'id' => $m->id, 'title' => $m->title, 'content' => $m->content, 'category_id' => $m->category_id, 'name' => $m->category_name, 'sesskey' => sesskey())
                 ),
-                $OUTPUT->pix_icon('t/edit', '') ,array("aria-label"=>"edit news")
+                $OUTPUT->pix_icon('t/edit', '') . "Edit",array("aria-label"=>"edit news")
             );
 
             echo html_writer::end_tag('p');

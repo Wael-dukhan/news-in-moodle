@@ -42,7 +42,7 @@ class manager_category {
         try {
             $DB->insert_record('local_newsing_category', $record);
             // echo "yes";
-            redirect("index.php");  
+            redirect("index.php",\core\output\notification::NOTIFY_SUCCESS . " created category");  
             return true;
         } catch (dml_exception $e) {
             return false;

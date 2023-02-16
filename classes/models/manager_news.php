@@ -48,7 +48,7 @@ class manager_news {
       
         try {
             $DB->insert_record('local_newsing', $record);  
-            redirect("index.php");
+            redirect("index.php",\core\output\notification::NOTIFY_SUCCESS . "  created news");
             return true;
         } catch (dml_exception $e) {
             return false;
