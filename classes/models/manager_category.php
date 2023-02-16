@@ -31,13 +31,14 @@ class manager_category {
      * @param string $category_name
      * @return bool true if successful
      */
-    public function create_category(string $category_name): bool
+    public function create_category(string $category_name,string $parent_category): bool
     {  
         global $DB;
         $record = new stdClass;
         $record->name = $category_name;
+        $record->parent = $parent_category;
         $record->time_created = time();
-
+        
         try {
             $DB->insert_record('local_newsing_category', $record);
             redirect("index.php");  

@@ -35,18 +35,21 @@ $PAGE->set_heading(get_string('pluginname', 'local_newsing'));
 require_capability('local/newsing:postcategory', $context);
 
 
-$categoryform = new local_news_category_form();
+$categoryform = new local_news_category_form();        
+
 if ($data = $categoryform->get_data()) {
 
     $category_name = required_param('namecategory', PARAM_TEXT);
-    if (!empty($category_name)) {
+    // die("hhhhh");
+    $parent_category = required_param('parent', PARAM_TEXT);
+    if (!empty($category_name) && !empty($parent_category)) {
         $manager = new manager_category();
-        $manager->create_category($category_name);
+        $manager->create_category($category_name,$parent_category);
     }
 }
 
 echo $OUTPUT->header();
 
 $categoryform->display();
-
+var_dump($data);
 echo $OUTPUT->footer();

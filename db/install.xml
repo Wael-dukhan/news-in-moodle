@@ -21,12 +21,14 @@
     <TABLE NAME="local_newsing_category" COMMENT="this is table for category news">
       <FIELDS>
         <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="parent" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/> 
         <FIELD NAME="name" TYPE="char" LENGTH="30" NOTNULL="true" SEQUENCE="false"/>
         <FIELD NAME="time_created" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
       </FIELDS>
       <KEYS>
         <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
         <KEY NAME="newsing-category-unique-key" TYPE="unique" FIELDS="name"/>
+        <KEY NAME="parent-category-foreign-key" TYPE="foreign" FIELDS="parent" REFTABLE="local_newsing_category" REFFIELDS="id"/>
       </KEYS>
     </TABLE>
   </TABLES>

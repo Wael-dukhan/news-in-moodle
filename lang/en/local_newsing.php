@@ -26,7 +26,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['pluginname'] = 'Newsing';
-$string['yourmessage']='Enter The Category';
+$string['yourmessage']='Enter The SubCategory';
 $string['newstitle_form']="Enter The News Title";
 $string['newscontent_form']="Enter The News Content";
 $string['head_list_news']="News List";

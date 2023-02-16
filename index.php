@@ -21,6 +21,9 @@
  * @copyright   2022 Your name <your@email>
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+
+use core_reportbuilder\local\filters\text;
+
 require_once('../../config.php');
 require_once($CFG->dirroot . "/local/newsing/classes/models/manager_news.php");
 
@@ -74,8 +77,8 @@ if ($allowpost) {
     foreach ($news as $m) {
         echo html_writer::start_div('col-4 ', null);
         echo html_writer::start_tag('div', array('class' => 'card '));
-        echo html_writer::start_tag('div', array('class' => 'card-body'));
-        $img = html_writer::empty_tag('img', array('src' => (bool)$m->image ? $m->image : 'upload/1676131964image2.jpg', 'class' => 'img-thumbnail', 'alt' => 'Alt text for your image','style'=>'height:175px'));
+        echo html_writer::start_tag('div', array('class' => 'card-body'));//upload/1676131964image2.jpg
+        $img = html_writer::empty_tag('img', array('src' => (bool)$m->image ? $m->image : '', 'class' => 'img-thumbnail', 'alt' => "Alt text for your image ",'style'=>'height:175px'));
         echo html_writer::tag('p', $img);
         echo html_writer::tag('p', format_text($m->title, FORMAT_PLAIN), array('class' => 'card-text'));
         echo html_writer::tag('p', format_text($m->category_name, FORMAT_PLAIN), array('class' => 'card-text'));
@@ -112,7 +115,7 @@ if ($allowpost) {
                     '/local/newsing/edit_news.php',
                     array('action' => 'edit', 'id' => $m->id, 'title' => $m->title, 'content' => $m->content, 'category_id' => $m->category_id, 'name' => $m->category_name, 'sesskey' => sesskey())
                 ),
-                $OUTPUT->pix_icon('t/edit', '') . get_string('edit')
+                $OUTPUT->pix_icon('t/edit', '') ,array("aria-label"=>"edit news")
             );
 
             echo html_writer::end_tag('p');

@@ -28,14 +28,28 @@ class local_news_category_form extends moodleform {
     /**
      * Define the form.
      */
+
     public function definition() {
         $mform    = $this->_form; // Don't forget the underscore!
+        global $DB;
 
-        $mform->addElement('textarea', 'namecategory', get_string('yourmessage', 'local_news')); // Add elements to your form.
+        $records=$DB->get_records('local_newsing_category');
+
+        $categories=array();
+
+        $categories[0]="Top";
+        foreach($records as $record)
+        {
+            $categories[$record->id]=$record->name;
+        }
+        $mform->addElement('select', 'parent','categories',$categories); // Add elements to your form.
+        // $mform->setDefault('parent',0);
+        //        ----------------------------------
+        $mform->addElement('text', 'namecategory', get_string('yourmessage', 'local_newsing')); // Add elements to your form.
         $mform->setType('namecategory', PARAM_TEXT); // Set type of element.
-
-        $submitlabel = get_string('submit');
-        $mform->addElement('submit', 'submitmessage', $submitlabel);
+        // $mform->setAttributes(array('required'=>true)); 
+        
+        $mform->addElement('submit', 'submitmessage', get_string('submit'));
 
     }
 }
