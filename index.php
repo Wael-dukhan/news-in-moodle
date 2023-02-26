@@ -22,10 +22,10 @@
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-use core_reportbuilder\local\filters\text;
 
 require_once('../../config.php');
 require_once($CFG->dirroot . "/local/newsing/classes/models/manager_news.php");
+$PAGE->requires->css('/local/newsing/styles.css');
 
 $context = context_system::instance();
 $PAGE->set_context($context);
@@ -63,12 +63,15 @@ if ($action == 'del') {
 }
 
 echo $OUTPUT->header();
+// echo $OUTPUT->render_from_template('local_newsing/test', null);
+
 if ($allowpost) {
+    
     echo html_writer::start_div("row", null);
 
-    echo html_writer::link(new moodle_url('/local/newsing/create_category.php'), 'Create Category', array('class' => 'btn btn-primary col-5 mx-5 mb-3'));
+    echo html_writer::link(new moodle_url('/local/newsing/create_category.php'), 'Create Category', array('class' => 'btn btn-primary a col-5 mx-5 mb-3'));
 
-    echo html_writer::link(new moodle_url('/local/newsing/create_news.php'), 'Create News', array('class' => 'btn btn-primary col-5 mx-5 mb-3'));
+    echo html_writer::link(new moodle_url('/local/newsing/create_news.php'), 'Create News', array('class' => 'btn btn-primary a col-5 mx-5 mb-3'));
 
     echo html_writer::end_div();
 
@@ -76,17 +79,17 @@ if ($allowpost) {
 
     foreach ($news as $m) {
         echo html_writer::start_div('col-4 ', null);
-        echo html_writer::start_tag('div', array('class' => 'card '));
+        echo html_writer::start_tag('div', array('class' => 'card mb-2 bg-gray'));
         echo html_writer::start_tag('div', array('class' => 'card-body'));//upload/1676131964image2.jpg
-        $img = html_writer::empty_tag('img', array('src' => (bool)$m->image ? $m->image : '', 'class' => 'img-thumbnail', 'alt' => "Alt text for your image ",'style'=>'height:175px'));
-        echo html_writer::tag('p', $img);
+        $img = html_writer::empty_tag('img', array('src' => (bool)$m->image ? $m->image : '', 'class' => 'img-thumbnail img', 'alt' => "Alt text for your image "));
+        echo html_writer::tag('p', $img,['class'=>'img']);
         echo html_writer::tag('p', format_text($m->title, FORMAT_PLAIN), array('class' => 'card-text'));
         echo html_writer::tag('p', format_text($m->name , FORMAT_PLAIN), array('class' => 'card-text'));
         echo html_writer::start_tag('p', array('class' => 'card-text'));
-        echo html_writer::tag('small', format_text($m->content, FORMAT_PLAIN), array('class' => 'text-muted'));
+        echo html_writer::tag('small', format_text($m->content, FORMAT_PLAIN), array('class' => 'text-black-200'));
         echo html_writer::end_tag('p');
         echo html_writer::start_tag('p', array('class' => 'card-text'));
-        echo html_writer::tag('small', userdate($m->timecreated), array('class' => 'text-muted '));
+        echo html_writer::tag('small', userdate($m->timecreated), array('class' => 'text-info '));
         echo html_writer::end_tag('p');
         echo html_writer::start_tag('p', array('class' => 'card-text'));
         echo html_writer::tag('small', format_text($m->categoryid, FORMAT_PLAIN), array('class' => 'text-muted '));
@@ -128,4 +131,5 @@ if ($allowpost) {
 
     echo html_writer::end_tag('div');
 }
+
 echo $OUTPUT->footer();
