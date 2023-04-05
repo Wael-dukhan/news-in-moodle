@@ -25,3 +25,11 @@
 }}
 <h1 class="a">List of News</h1>
 
+<h1>{{ title }}</h1>
+<ul>
+  {{# links }}{{! object }}
+    <li>
+      <a href="{{ href }}">{{ title }}</a>
+    </li>
+  {{/ links }}
+</ul>

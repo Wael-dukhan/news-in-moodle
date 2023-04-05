@@ -22,9 +22,6 @@
  */
 
 
-use dml_exception;
-use stdClass;
-
 class manager_news {
 
     /** Insert the data into our database table.
@@ -79,5 +76,64 @@ class manager_news {
         catch (dml_exception $e) {
             return false;
         }
+    }
+/** Get the last five news
+*   @return array of last five news
+*/ 
+public function get_num_news()
+{
+        global $DB;
+
+        $sql = "SELECT ln.id, ln.title, ln.content  , ln.image
+            FROM {local_newsing} ln
+            LEFT OUTER JOIN {local_newsing_category} lnc ON lnc.id = ln.category_id
+            ORDER BY id DESC
+            LIMIT 5";
+        try {
+            return $DB->get_records_sql($sql);
+        } catch (dml_exception $e) {
+            // Log error here.
+            return $DB->get_records('local_newsing') ;
+        }
+    }
+        
+    /** It gives the news of the filter according to the category 
+    *   @param int $filter
+    *   @return array of news
+    */ 
+    public function get_news_filter($filter){
+        global $DB;
+        $sql='SELECT ln.id, ln.title, ln.content, ln.image, ln.category_id, ln.time_created
+            FROM {local_newsing} ln
+            LEFT OUTER JOIN {local_newsing_category} lnc ON lnc.id = ln.category_id
+            WHERE ln.category_id = :filterid';
+        $params=[
+            'filterid'=>$filter
+        ];
+        try {
+            return $DB->get_records_sql($sql,$params);
+        } catch (dml_exception $e) {
+            // Log error here.
+            return $DB->get_records('local_newsing') ;
+        }
+    }
+    
+    /** Get a single message from its id.
+     * @param int $newsid the message we're trying to get.
+     * @return object|false message data or false if not found.
+     */
+    public function get_news(int $newsid)
+    {
+        global $DB;
+        return $DB->get_record('local_newsing', ['id' => $newsid]);
+    }
+    /** Get all news from its id.
+     * @param int $newsid the message we're trying to get.
+     * @return object|false message data or false if not found.
+     */
+    public function get_all_news(): array
+    {
+        global $DB;
+        return $DB->get_records('local_newsing');
     }
 }

@@ -61,9 +61,16 @@ if ($action == 'del') {
     $manager = new manager_news();
     $manager->delete_news($params);
 }
-
+$template=[
+    'title' => 'Mustache links',
+    'links' => [
+      ['href' => 'https://mustache.github.io'],
+      ['href' => 'https://github.com/mustache/spec', 'title' => 'The Mustache spec'],
+      ['href' => 'https://github.com/bobthecow/mustache.php', 'title' => 'Mustache.php'],
+    ]
+    ];
 echo $OUTPUT->header();
-// echo $OUTPUT->render_from_template('local_newsing/test', null);
+echo $OUTPUT->render_from_template('local_newsing/test', $template);
 
 if ($allowpost) {
     
@@ -74,6 +81,7 @@ if ($allowpost) {
     echo html_writer::link(new moodle_url('/local/newsing/create_news.php'), 'Create News', array('class' => 'btn btn-primary a col-5 mx-5 mb-3'));
 
     echo html_writer::end_div();
+    // echo '<img src="../../local/newsing/upload//1676552306image3.jpg">';
 
     echo html_writer::start_tag('div', array('class' => 'row'));
 
@@ -131,5 +139,5 @@ if ($allowpost) {
 
     echo html_writer::end_tag('div');
 }
-
+    var_dump($ADMIN->fulltree);
 echo $OUTPUT->footer();
