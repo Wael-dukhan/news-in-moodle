@@ -39,7 +39,7 @@ $PAGE->set_heading(get_string('pluginname', 'local_newsing'));
     $contentnews = optional_param('content', '', PARAM_TEXT);
     $selectedcategory = optional_param('category_id', '', PARAM_TEXT);
 
-    $classform = new local_news_form();
+    $classform = new local_news_news_form();
     $classform->getMyObject()->setDefault('newstitle', $titlenews);
     $classform->getMyObject()->setDefault('newscontent', $contentnews);
     $classform->getMyObject()->setDefault('selectedcategory', $selectedcategory);
