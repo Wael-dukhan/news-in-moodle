@@ -29,7 +29,7 @@ $PAGE->set_title($SITE->fullname);
 $PAGE->set_heading(get_string('pluginname', 'local_newsing'));
 
 
-$newsform = new local_news_form();
+$newsform = new local_news_news_form();
 if ($data = $newsform->get_data()) {
     $titlenews = required_param('newstitle', PARAM_TEXT);
     $contentnews = required_param('newscontent', PARAM_TEXT);

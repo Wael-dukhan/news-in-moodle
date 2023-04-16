@@ -97,13 +97,10 @@ if ($allowpost) {
         echo html_writer::tag('small', format_text($m->content, FORMAT_PLAIN), array('class' => 'text-black-200'));
         echo html_writer::end_tag('p');
         echo html_writer::start_tag('p', array('class' => 'card-text'));
-        echo html_writer::tag('small', userdate($m->timecreated), array('class' => 'text-info '));
+        echo html_writer::tag('small', userdate($m->time_created), array('class' => 'text-info '));
         echo html_writer::end_tag('p');
         echo html_writer::start_tag('p', array('class' => 'card-text'));
-        echo html_writer::tag('small', format_text($m->categoryid, FORMAT_PLAIN), array('class' => 'text-muted '));
-        echo html_writer::end_tag('p');
-        echo html_writer::start_tag('p', array('class' => 'card-text'));
-        echo html_writer::tag('small', format_text($m->ca, FORMAT_PLAIN), array('class' => 'text-muted '));
+        echo html_writer::tag('small', format_text($m->category_id, FORMAT_PLAIN), array('class' => 'text-muted '));
         echo html_writer::end_tag('p');
         if ($deleteanypost || $deletepost) {
             echo html_writer::start_tag('p', array('class' => 'card-footer text-center'));
@@ -124,7 +121,7 @@ if ($allowpost) {
             echo html_writer::link(
                 new moodle_url(
                     '/local/newsing/edit_news.php',
-                    array('action' => 'edit', 'id' => $m->id, 'title' => $m->title, 'content' => $m->content, 'category_id' => $m->category_id, 'name' => $m->category_name, 'sesskey' => sesskey())
+                    array('action' => 'edit', 'id' => $m->id, 'title' => $m->title, 'content' => $m->content, 'category_id' => $m->category_id, 'name' => $m->name, 'sesskey' => sesskey())
                 ),
                 $OUTPUT->pix_icon('t/edit', '') . "Edit",array("aria-label"=>"edit news")
             );
@@ -139,5 +136,5 @@ if ($allowpost) {
 
     echo html_writer::end_tag('div');
 }
-    var_dump($ADMIN->fulltree);
+    // var_dump($ADMIN->fulltree);
 echo $OUTPUT->footer();

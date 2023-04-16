@@ -23,7 +23,7 @@ global $CFG;
 
 require_once($CFG->libdir . '/formslib.php');
 
-class local_news_form extends moodleform {
+class local_news_news_form extends moodleform {
     /**
      * Define the form.
      */
@@ -37,7 +37,7 @@ class local_news_form extends moodleform {
         $mform->addElement('textarea', 'newscontent', get_string('newscontent_form', 'local_news'),array('rows'=>10,'col'=>100)); // Add elements to your form.
         $mform->setType('newscontent', PARAM_TEXT); // Set type of element.
 
-        $mform->addElement("hidden",'id');
+        $mform->addElement("hidden",'id','id');
         $records=$DB->get_records('local_newsing_category');
         $categories=array();
 

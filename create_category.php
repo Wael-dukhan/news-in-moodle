@@ -35,7 +35,7 @@ $PAGE->set_heading(get_string('pluginname', 'local_newsing'));
 require_capability('local/newsing:postcategory', $context);
 
 
-$categoryform = new local_news_category_form();        
+$categoryform = new local_newsing_category_form();        
 
 if ($data = $categoryform->get_data()) {
 

@@ -68,8 +68,20 @@ class manager_news {
         try{
         global $DB,$PAGE;
         // die("fffff");
+        $transaction = $DB->start_delegated_transaction();
 
-        $DB->delete_records('local_newsing', $params);
+        $news=$DB->get_record('local_newsing', $params);
+        $filename = $news->image; // تعيين المسار الكامل للملف المراد حذفه
+        if (file_exists($filename)) { // التأكد من وجود الملف
+            unlink($filename); // حذف الملف
+            echo 'تم حذف الملف بنجاح';
+        } else {
+            echo 'لم يتم العثور على الملف';
+        }
+        $deletedNews = $DB->delete_records('local_newsing', $params);
+        if ($deletedNews) {
+            $DB->commit_delegated_transaction($transaction);
+        }
         redirect($PAGE->url);
         return true;
         }

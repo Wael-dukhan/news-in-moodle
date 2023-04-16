@@ -24,7 +24,7 @@ global $CFG;
 
 require_once($CFG->libdir . '/formslib.php');
 
-class local_news_category_form extends moodleform {
+class local_newsing_category_form extends moodleform {
     /**
      * Define the form.
      */
