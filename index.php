@@ -121,7 +121,7 @@ if ($allowpost) {
             echo html_writer::link(
                 new moodle_url(
                     '/local/newsing/edit_news.php',
-                    array('action' => 'edit', 'id' => $m->id, 'title' => $m->title, 'content' => $m->content, 'category_id' => $m->category_id, 'name' => $m->name, 'sesskey' => sesskey())
+                    array('action' => 'edit', 'id' => $m->id, 'title' => $m->title, 'content' => $m->content,'image'=>$m->image, 'category_id' => $m->category_id, 'name' => $m->name, 'sesskey' => sesskey())
                 ),
                 $OUTPUT->pix_icon('t/edit', '') . "Edit",array("aria-label"=>"edit news")
             );

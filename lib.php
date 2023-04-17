@@ -31,9 +31,10 @@ defined('MOODLE_INTERNAL') || die();
  * @param navigation_node $frontpage Node representing the front page in the navigation tree.
  */
 function local_newsing_extend_navigation_frontpage(navigation_node $frontpage) {
+    global $OUTPUT;
 
     $frontpage->add(
-        get_string('pluginname', 'local_newsing'),
+        $OUTPUT->pix_icon('t/message', '') . get_string('pluginname', 'local_newsing'),
         new moodle_url('/local/newsing/index.php'),
         navigation_node::TYPE_CUSTOM,
         null,
@@ -42,6 +43,7 @@ function local_newsing_extend_navigation_frontpage(navigation_node $frontpage) {
         // null
     );
 }
+
 //  pix_icon('t/message', 'Send a message');
 //  pix_icon('t/edit', 'Edit this item');
 //  pix_icon('t/delete', 'Delete this item');

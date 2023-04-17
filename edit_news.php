@@ -35,11 +35,13 @@ $PAGE->set_heading(get_string('pluginname', 'local_newsing'));
 
 
     $idnews = required_param('id', PARAM_INT);
+    $image = optional_param('image', "",PARAM_TEXT);
     $titlenews = optional_param('title', '', PARAM_TEXT);
     $contentnews = optional_param('content', '', PARAM_TEXT);
     $selectedcategory = optional_param('category_id', '', PARAM_TEXT);
 
     $classform = new local_news_news_form();
+    $classform->getMyObject()->setDefault('image', $image);
     $classform->getMyObject()->setDefault('newstitle', $titlenews);
     $classform->getMyObject()->setDefault('newscontent', $contentnews);
     $classform->getMyObject()->setDefault('selectedcategory', $selectedcategory);
@@ -47,28 +49,44 @@ $PAGE->set_heading(get_string('pluginname', 'local_newsing'));
 
     if ($data = $classform->get_data()) {
         //    $idnews = required_param('id', PARAM_INT);
+        $imagenews1 = required_param('image', PARAM_TEXT);
         $titlenews1 = required_param('newstitle', PARAM_TEXT);
         $contentnews1 = required_param('newscontent', PARAM_TEXT);
         $selectedcategory1 = required_param('selectedcategory', PARAM_TEXT);
-           $id = required_param('id', PARAM_TEXT);
+        $id = required_param('id', PARAM_TEXT);
+        $file = $classform->get_new_filename('image');
 
-        if (!empty($titlenews1) && !empty($contentnews1) && !empty($selectedcategory1)) {
+        $fullpath = "upload/". time().$file;
+        $params['id'] = $idnews;
+        $where = 'WHERE id = :id';
+        $record = $DB->get_record_sql("SELECT image FROM {local_newsing} $where", $params);
+        if (file_exists($record->image)) {
+            unlink($record->image);
 
+        }
+        $success = $classform->save_file('image', $fullpath,true);
+    
+    
+        if(!$success){
+            echo "Oops! something went wrong!";
+        }
+        if (!empty($imagenews1) && !empty($titlenews1) && !empty($contentnews1) && !empty($selectedcategory1)) {
             $record = new stdClass;
             $record->id = $idnews;
             $record->title = $titlenews1;
             $record->content = $contentnews1;
             $record->categoryid = $selectedcategory1;
+            $record->image = 'upload/'.time().$file;
 
             $record->timecreated = time();
 
             $DB->update_record('local_newsing', $record);
-            redirect("http://localhost/moodle/local/newsing/index.php");
+            redirect("http://localhost/moodle/local/newsing/index.php","Updated complete");
         }
     }
 
 echo $OUTPUT->header();
-    $classform->display();
+$classform->display();
 
 //print($idnews);
 //print( $classform->get_data());
