@@ -26,6 +26,6 @@ defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'local_newsing';
 $plugin->release = '0.1.0';
-$plugin->version = 2023042004;
+$plugin->version = 2023042005;
 $plugin->requires = 2021051700;
 $plugin->maturity = MATURITY_ALPHA;

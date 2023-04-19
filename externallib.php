@@ -85,12 +85,12 @@ class local_newsing_service_external extends external_api{
         return new external_multiple_structure(
              new external_single_structure(
             array(
-                'id  of Moodle Web Service functions'=>new external_value(PARAM_TEXT,'id'),
-                'title  of Moodle Web Service functions'=>new external_value(PARAM_TEXT,'title'),
-                'content  of Moodle Web Service functions'=>new external_value(PARAM_TEXT,'content'),
-                'category_ID  of Moodle Web Service functions'=>new external_value(PARAM_TEXT,'category_id'),
-                'time_created  of Moodle Web Service functions'=>new external_value(PARAM_TEXT,'time_created'),
-                'image url  of Moodle Web Service functions'=>new external_value(PARAM_TEXT,'image url'),
+                'Id_of_Moodle_Web_Service_functions'=>new external_value(PARAM_TEXT,'id'),
+                'Title_of_Moodle_Web_Service_functions'=>new external_value(PARAM_TEXT,'title'),
+                'Content_of_Moodle_Web_Service_functions'=>new external_value(PARAM_TEXT,'content'),
+                'Category_ID_of_Moodle_Web_Service_functions'=>new external_value(PARAM_TEXT,'category_id'),
+                'Time_created_of_Moodle_Web_Service_functions'=>new external_value(PARAM_TEXT,'time_created'),
+                'Image_url_of_Moodle_Web_Service_functions'=>new external_value(PARAM_TEXT,'image url'),
             ),
         ));
     }
