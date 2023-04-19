@@ -137,4 +137,7 @@ if ($allowpost) {
     echo html_writer::end_tag('div');
 }
     // var_dump($ADMIN->fulltree);
+    // var_dump($DB->get_records('local_newsing',['category_id'=>'1']));
+    echo '<hr>';
+    // var_dump($DB->get_record('local_newsing',['category_id'=>'2']));
 echo $OUTPUT->footer();
