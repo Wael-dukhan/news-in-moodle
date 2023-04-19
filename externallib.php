@@ -84,15 +84,15 @@ class local_newsing_service_external extends external_api{
     {
         return new external_multiple_structure(
              new external_single_structure(
-            array(
-                'Id_of_Moodle_Web_Service_functions'=>new external_value(PARAM_TEXT,'id'),
-                'Title_of_Moodle_Web_Service_functions'=>new external_value(PARAM_TEXT,'title'),
-                'Content_of_Moodle_Web_Service_functions'=>new external_value(PARAM_TEXT,'content'),
-                'Category_ID_of_Moodle_Web_Service_functions'=>new external_value(PARAM_TEXT,'category_id'),
-                'Time_created_of_Moodle_Web_Service_functions'=>new external_value(PARAM_TEXT,'time_created'),
-                'Image_url_of_Moodle_Web_Service_functions'=>new external_value(PARAM_TEXT,'image url'),
-            ),
-        ));
+                array(
+                    'id' => new external_value(PARAM_TEXT, 'id'),
+                    'title' => new external_value(PARAM_TEXT,'newstitle'),
+                    'content'=> new external_value(PARAM_TEXT, ' newstext'),
+                    'category_id'=>new external_value(PARAM_TEXT,'Items categoryid'),
+                    'image'=>new external_value(PARAM_TEXT,'Items image'),
+                    'time_created'=>new external_value(PARAM_TEXT,'Items timecreated')
+                ),
+            ));
     }
     public static function get_category()  
     {
